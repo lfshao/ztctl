@@ -103,12 +103,12 @@ func DeauthorizeMember(networkID string, memberID string) error {
 // ListMembers 列出指定网络的所有成员
 func ListMembers(networkID string) error {
 	if networkID == "" {
-		return fmt.Errorf("\033[31m错误: 网络ID不能为空\033[0m")
+		return fmt.Errorf("网络ID不能为空")
 	}
 
 	c, err := config.GetConfig().GetZTClient()
 	if err != nil {
-		return fmt.Errorf("\033[31m错误: 连接ZeroTier Central失败\033[0m\n原因: %v\n建议: 请检查API Token是否正确", err)
+		return fmt.Errorf("连接ZeroTier Central失败: %v", err)
 	}
 
 	ctx := context.Background()
@@ -116,13 +116,13 @@ func ListMembers(networkID string) error {
 	// 获取网络信息
 	network, err := c.GetNetwork(ctx, networkID)
 	if err != nil {
-		return fmt.Errorf("\033[31m错误: 获取网络信息失败\033[0m\n原因: %v\n建议: 请检查网络ID是否正确", err)
+		return fmt.Errorf("获取网络信息失败: %v", err)
 	}
 
 	// 获取成员列表
 	members, err := c.GetMembers(ctx, networkID)
 	if err != nil {
-		return fmt.Errorf("\033[31m错误: 获取成员列表失败\033[0m\n原因: %v\n建议: 请确保网络连接正常且API Token具有足够的权限", err)
+		return fmt.Errorf("获取成员列表失败: %v", err)
 	}
 
 	if len(members) == 0 {
