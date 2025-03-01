@@ -99,12 +99,3 @@ func printSeparator(colWidths []int) {
 	}
 	fmt.Println()
 }
-
-// toInterfaceSlice 将字符串切片转换为接口切片
-func toInterfaceSlice(s []string) []interface{} {
-	is := make([]interface{}, len(s))
-	for i, v := range s {
-		is[i] = v
-	}
-	return is
-}
